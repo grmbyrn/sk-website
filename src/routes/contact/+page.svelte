@@ -1,0 +1,103 @@
+<script>
+    import {enhance} from '$app/forms'
+    import Button from "$lib/button.svelte";
+
+    export let form
+
+    $: console.log(form);
+</script>
+
+<div class="container">
+    <h2>Contact us</h2>
+    <p>{form?.status || ''}</p>
+      <form method="POST" use:enhance>
+        <div class="form-group">
+            <label class="col-md-3 control-label" for="name">Name</label>
+            <div class="col-md-9">
+                <input
+                    id="name"
+                    name="name"
+                    type="text"
+                    placeholder="Your name"
+                    class="form-control"
+                    value={form?.name || ''}
+                />
+            </div>
+        </div>
+  
+        <div class="form-group">
+            <label class="col-md-3 control-label" for="email">Your E-mail</label>
+            <div class="col-md-9">
+                <input
+                    id="email"
+                    name="email"
+                    type="text"
+                    placeholder="Your email"
+                    class="form-control" 
+                    value={form?.email || ''}
+                />
+            </div>
+        </div>
+  
+        <div class="form-group">
+            <label class="col-md-3 control-label" for="message">Your message</label>
+            <div class="col-md-9">
+                <textarea
+                    class="form-control"
+                    id="message"
+                    name="message"
+                    placeholder="Please enter your message here..."
+                    rows="5"
+                    value={form?.message || ''}
+                />
+            </div>
+        </div>
+  
+        <div class="form-group">
+            <div class="col-md-12">
+                <Button type="submit">Submit</Button>
+            </div>
+        </div>
+    </form>
+</div>
+
+<style>
+    .container {
+      width: 100%;
+      padding: 2em 0;
+    }
+
+    h2 {
+      font-weight: 500;
+      font-size: 2em;
+    }
+
+    input,
+    textarea {
+      width: 100%;
+      padding: 0.75em 1em;
+      border-radius: 0.25em;
+      border: 1px solid #999;
+    }
+
+    .form-group {
+      margin-bottom: 1.5em;
+    }
+
+    label {
+      display: block;
+      padding-bottom: 0.5em;
+    }
+
+    .success {
+      color: lightgreen;
+    }
+
+    .error {
+      border: 1px solid red;
+    }
+
+    .red {
+      color: red;
+    }
+</style>
